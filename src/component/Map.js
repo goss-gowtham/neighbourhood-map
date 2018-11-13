@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
-{/*
+/*
   Referred from React Library as suggested in classroomshttps://tomchentw.github.io/react-google-maps/#usage--configuration
-*/}
+*/
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={8}
@@ -11,14 +11,18 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     center={props.center}
   >
     {props.markers &&
-      props.markers.filter(marker => marker.isVisible).map((marker, id) => (
-        <Marker key={id} position={{ lat: marker.lat, lng: marker.lng }} onClick={() => props.handleMarker(marker)}>
-          {marker.isOpen && (
+      props.markers.filter(marker => marker.isVisible).map((marker, id) => {
+        const venueInfo = props.venues.find(venue => venue.id === marker.id);
+        return <Marker key={id} position={{ lat: marker.lat, lng: marker.lng }} onClick={() => props.handleMarker(marker)}>
+          {marker.isOpen && venueInfo.bestPhoto && (
             <InfoWindow>
-              <p> Hello </p>
+              <React.Fragment>
+              <h1> {venueInfo.name} </h1>
+              <img src={`${venueInfo.bestPhoto.prefix}200x200${venueInfo.bestPhoto.suffix}`} alt={venueInfo.name}/>  {/*Denotes every name as alt image!*/}
+              </React.Fragment>
             </InfoWindow>)}
         </Marker> /*Referred Course work for InfoWindows: https://github.com/udacity/ud864/blob/master/Project_Code_3_WindowShoppingPart1.html*/
-    )) }
+    }) }
   </GoogleMap>
 ))
 

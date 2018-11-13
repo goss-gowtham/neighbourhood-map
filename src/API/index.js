@@ -1,7 +1,7 @@
-{/*
+/*
  Used Foursquare API Developer docs and app for integrating 3rd Party API.
  Link: https://developer.foursquare.com/docs/api/
-*/}
+*/
 class Helper {
   static baseURL(){
     return "https://api.foursquare.com/v2/"; //used this for reducing code, as it'll be used again and again for getting Map Values

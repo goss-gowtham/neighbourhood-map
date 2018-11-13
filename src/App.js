@@ -23,8 +23,16 @@ class App extends Component {
   }
   /*Referred from coursework InfoWindow https://github.com/udacity/ud864/blob/master/Project_Code_3_WindowShoppingPart1.html*/
   handleMarker = (marker) => {
+    this.closeAllMarkers();
     marker.isOpen = true;
-    this.setState({markers: Object.assign(this.state.markers, marker)}) //Object.assign helps Copying Marker into the state. Referred: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+    this.setState({markers: Object.assign(this.state.markers, marker)}); //Object.assign helps Copying Marker into the state. Referred: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+    const venue = this.state.venues.find(venue => venue.id === marker.id);
+    fourSquare.getVenue(marker.id)
+      .then(res => {
+       const newVenue =  Object.assign(venue, res.response.venue);
+       this.setState({venues: Object.assign(this.state.venues, newVenue)});
+        console.log(newVenue);
+  });
   }
 
 
@@ -34,13 +42,14 @@ class App extends Component {
       limit: 10
     }).then(results => {
       const { venues } = results.response;
-      const { center } = results.response.geocode.feature.geometry; {/* Destructuring the constructor with this syntax */}
+      const { center } = results.response.geocode.feature.geometry; /* Destructuring the constructor with this syntax */
       const markers = venues.map(venue => {
         return {
           lat: venue.location.lat,
           lng: venue.location.lng,
           isOpen: false,
-          isVisible: true
+          isVisible: true,
+          id: venue.id
         };
       });
       this.setState({ venues, center, markers });
