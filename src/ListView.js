@@ -19,15 +19,15 @@ class ListView extends Component {
   };
   render() {
     const list = this.props.mainState.places && this.props.mainState.places.filter(items => items.name.toLowerCase().includes(this.state.query))
-    .map(venue => (
+    .map(val => (
       <div
         tabIndex={0}
-        onClick={event => this.onClickHandler(venue.id)}
+        onClick={event => this.onClickHandler(val.id)}
         className="list"
         role="button"
-        key={venue.id}
+        key={val.id}
       >
-        {venue.name}
+        {val.name}
       </div>
     ));
     return (
@@ -42,6 +42,10 @@ class ListView extends Component {
           <label htmlFor="search">Search Places </label>
         </div>
         <div className="list-render">{list}</div>
+        <div className="foursquare">
+          <img width="200px" src="https://ss0.4sqi.net/img/poweredByFoursquare/poweredby-one-color-cdf070cc7ae72b3f482cf2d075a74c8c.png" alt="Powered by Foursquare"
+          />
+        </div>
       </section>
     );
   }

@@ -8,9 +8,7 @@ const MyMapComponent = withScriptjs(
   return (
     <GoogleMap
       defaultZoom={11}
-      zoom={props.zoom}
       defaultCenter={{ lat: 13.0827, lng: 80.2707}}
-      center={props.center}
     >
       <MarkerComponent places={props.state && props.state.places}
       query={props.query}
@@ -58,10 +56,9 @@ class Map extends Component {
     return (
       <div style={{height : "90%"}} role="application">
         <MyMapComponent
-          {...this.props}
           googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCxHWWIFMTgAmLgWPi1cH0ewffy5zrTNEw"
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
+          containerElement={<div style={{ height: `100%`, width: "100%" }} />}
           state={this.state}
           query={this.props.query}
           idClicked={this.props.idClicked}

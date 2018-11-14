@@ -50,7 +50,7 @@ class MarkerComponent extends Component {
         });
       }
       if(nextProps.idClicked) {
-        this.onClickHandler(nextProps.idClicked);   //componentWillReceiveProps(nextProps)
+        this.onClickHandler(nextProps.idClicked);   
       }
     }
 
@@ -67,13 +67,13 @@ class MarkerComponent extends Component {
             onClick={e => this.onClickHandler(place.id)}
             >
              {place.isOpen && (
-               <InfoWindow>
-                 <React.Fragment>
+               <InfoWindow onCloseClick={e =>this.onClickHandler(place.id)}>
+               <div>
                  <h3> {place.name} </h3>
-                 <img src={place.photo} alt={place.name}/>  {/*Denotes every name as alt image!*/}
-                 <p>{place.address}</p>
-                 </React.Fragment>
-               </InfoWindow>)}
+                 <p>{place.address}</p> {/*ignored photos as Foursquare quota over always*/}
+                 </div>
+               </InfoWindow>
+             )}
            </Marker> /*Referred Course work for InfoWindows: https://github.com/udacity/ud864/blob/master/Project_Code_3_WindowShoppingPart1.html*/
          ));
          return <div>{place}</div>;

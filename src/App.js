@@ -21,8 +21,8 @@ class App extends Component {
   }
   componentDidMount() {
     let keys = {
-      client_id: "IED3Q03OEN0GUYNIWZDIJYUFX54XMQF5RJA1E4DLFGQPTZ0M",
-      client_secret: "S4WG1NY0MNCZLLMO5HDPUOHQRGMQOZ3SW21PFYLJC0QODGO0",
+      client_id: "I04PEDCIDC1MT1YDH4VSUJBSGCJBMMDRIBJY10GMJ0KNUIBT",
+      client_secret: "UTHX0NQSIHEBKUQOCTXNZAEGJBMHEJ1VBVWXGOKOZMOPCF35",
       v:"20181114"
     };
 
@@ -38,9 +38,9 @@ class App extends Component {
         await axios.get(`https://api.foursquare.com/v2/venues/${id}`,{
           params: keys
         })
-        .then(resp => resp.data.response).catch(Err => {
-          new Error(console.log(Err));
-          if(Err.toString().includes(429)) {
+        .then(resp => resp.data.response).catch(err => {
+          new Error(console.log(err));
+          if(err.toString().includes(429)) {
             const error = "Foursquare API quota over. Contact the developer";
             console.log(error);
             this.setState({
@@ -52,7 +52,6 @@ class App extends Component {
           datas.push({
             id: data.venue.id,
             name: data.venue.name,
-            photo: data.venue.bestPhoto.prefix + "1024" + data.venue.bestPhoto.suffix,
             coords: [data.venue.location.lat, data.venue.location.lng],
             address: data.venue.address
           }); //GET from fourSquare get API
@@ -64,7 +63,7 @@ class App extends Component {
           new Error(console.log(err));
         });
       });
-      await Promise.all(promise).then(resp => {
+      await Promise.all(promise).then(res => {
         this.setState({
           places: datas
         });
