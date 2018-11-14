@@ -8,9 +8,9 @@ class Helper {
   }
   static auth() {
     const keys = {
-      client_id: "MED0F2L2DD0UYQHHP4J3Z2XGTIEF4QGROT00HLKB0OMACX1E",
-      client_secret: "3RO5FBNW32T25L15ELJQQSEWHSGMDLY2DOTDFC2WRUACUVXT",
-      v:"20181113"
+      client_id: "IED3Q03OEN0GUYNIWZDIJYUFX54XMQF5RJA1E4DLFGQPTZ0M",
+      client_secret: "S4WG1NY0MNCZLLMO5HDPUOHQRGMQOZ3SW21PFYLJC0QODGO0",
+      v:"20181114"
     };
     return Object.keys(keys).map(key => `${key}=${keys[key]}`).join("&"); //v as of developing date
   }
