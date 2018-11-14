@@ -8,7 +8,7 @@ class MarkerComponent extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        places: ""
+        places: []
       };
     }
     onClickHandler(id) {
@@ -50,7 +50,7 @@ class MarkerComponent extends Component {
         });
       }
       if(nextProps.idClicked) {
-        this.onClickHandler(nextProps.idClicked);   
+        this.onClickHandler(nextProps.idClicked);
       }
     }
 
