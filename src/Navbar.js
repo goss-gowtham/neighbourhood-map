@@ -14,7 +14,7 @@ class Navbar extends Component {
       this.setState(prevState => ({
         isOpen: !prevState.isOpen
       }));
-      this.props.listViewOpen();
+      this.props.listViewOpenHandler();
     }
   };
 
@@ -22,7 +22,7 @@ class Navbar extends Component {
     return (
       <nav>
         <div className="nav-drawer">
-        <a className="canvas-toggle" onKeyPress={this.onClickHandler} onClick={this.onClickHandler}
+        <a className="canvas-toggler" onKeyPress={this.onClickHandler} onClick={this.onClickHandler}
         tabIndex={0}  //as per Semantics
         aria-label="Menu"
         type="button"

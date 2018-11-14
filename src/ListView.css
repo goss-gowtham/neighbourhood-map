@@ -4,7 +4,7 @@
   transition: transform 0.5s;
   height: 100%;
   z-index: 10;
-  background: #ddd;
+  background: #111;
 }
 
 .location-search {
@@ -19,7 +19,7 @@
   font-size: 1.1em;
 }
 .list-view .location-search label {
-  color: #fff;
+  color: #111;
   transform: translateY(-25px);
   font-size: 0.75em;
 }

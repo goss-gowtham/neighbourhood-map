@@ -5,3 +5,5 @@ class Error extends Component {
     return <div>{this.props.errorDisplay}</div>;
   }
 }
+
+export default Error;
