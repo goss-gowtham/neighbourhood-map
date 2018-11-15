@@ -16,6 +16,7 @@ html, body, #root, .App {
 }
 .App .sideBar {
   width: 25%;
+  background: #000;
 }
 .App .sideBar #search {
   width: 100%;
@@ -34,10 +35,12 @@ html, body, #root, .App {
   padding: .5rem;
   margin-top: 1rem;
   cursor: pointer;
-  background: #000;
-  color: white;
+  background: #f0f;
+  color: black;
+  font-weight:bold;
   box-shadow: 1px 10px 10px rgba(0,0,255,0.25);
-}
+};
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

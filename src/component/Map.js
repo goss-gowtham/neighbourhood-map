@@ -6,7 +6,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "reac
 */
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
-    defaultZoom={8}
+    defaultZoom={11}
     zoom={props.zoom}
     defaultCenter={{ lat: 13.0827, lng: 80.2707}}
     center={props.center}
@@ -16,8 +16,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
         const venueInfo = props.venues.find(venue => venue.id === marker.id);
         return <Marker key={id}
          position={{ lat: marker.lat, lng: marker.lng }} onClick={() => props.handleMarker(marker)}
-         animation={markerCount.length === 1 ? google.map.Animation.BOUNCE : google.map.Animation.DROP}
-         >
+         animation={markerCount.length === 1 ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP}>
           {marker.isOpen && (
             <InfoWindow>
               <div>
@@ -25,7 +24,8 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
                 <p>{venueInfo.location.address}</p>
               </div>
             </InfoWindow>)}
-        </Marker> /*Referred Course work for InfoWindows: https://github.com/udacity/ud864/blob/master/Project_Code_3_WindowShoppingPart1.html*/
+        </Marker> /*Referred Course work for InfoWindows: https://github.com/udacity/ud864/blob/master/Project_Code_3_WindowShoppingPart1.html
+        And for Marker Animations: https://developers.google.com/maps/documentation/javascript/examples/marker-animations*/
     }) }
   </GoogleMap>
 ))

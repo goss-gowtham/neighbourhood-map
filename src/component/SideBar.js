@@ -37,6 +37,10 @@ export default class SideBar extends Component {
         <div className="sideBar">
           <input type={"search"} id="search" placeholder="Search Places" onChange={this.handleChange}/>
           <VenueList {...this.props} venues={this.handleFilterVenues()} handleListItem={this.props.handleListItem} />
+          <div style={{background:"white", bottom: "10%"}}>
+            <img width="200px" src="https://ss0.4sqi.net/img/poweredByFoursquare/poweredby-one-color-cdf070cc7ae72b3f482cf2d075a74c8c.png" alt="Powered by Foursquare"
+            />
+          </div>
         </div>
       )
     }
