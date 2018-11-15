@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Marker, InfoWindow } from "react-google-maps";
 /*
   Referred from React Library as suggested in classrooms: https://tomchentw.github.io/react-google-maps/#markerwithlabel
+  Also, referred from https://stackoverflow.com/questions/44729776/how-can-animation-be-added-to-markers-in-react-google-maps for animations
 */
 
 class MarkerComponent extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        places: []
+        places: ""
       };
     }
     onClickHandler(id) {
@@ -23,7 +24,7 @@ class MarkerComponent extends Component {
         return { places: marker };
       });
     }
-    //referred from https://stackoverflow.com/questions/44729776/how-can-animation-be-added-to-markers-in-react-google-maps
+
     animateMarkerBounce = id => {
       const marker = this.state.places.map(
         place => place.id === id ? (place.animation = 1) && place : !(place.animation = 0) && place
