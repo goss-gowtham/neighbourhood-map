@@ -50,7 +50,7 @@ class App extends Component {
       errorDisplay: error
     });
   }
-  //Marker Positions are fetched Async from FourSquare abd catches error for Quota limit exceed and helps to display in the UI
+  //Marker Positions are fetched Async from FourSquare and catches error helps to display in the UI
   componentDidMount() {
     fourSquare.search({
       near: "Salem, IN",  //fetching my HomeTown!
