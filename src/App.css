@@ -15,13 +15,15 @@ html, body, #root, .App {
   flex-wrap: nowrap;
 }
 .App .sideBar {
-  width: 25%;
+  width: 20%;
   background: #000;
+  overflow-y: scroll;
 }
 .App .sideBar #search {
   width: 100%;
   height: 2rem;
   font-size: 1rem;
+  margin-top: 10%;
 }
 .App .sideBar .venueList {
   padding: 1rem;

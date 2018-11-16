@@ -30,8 +30,14 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   </GoogleMap>
 ))
 
-
+//Checks for Auth failure and then renders map
 export default class Map extends Component {
+  componentDidMount() {
+    window.gm_authFailure = this.gm_authFailure;
+  }
+  gm_authFailure = () => {
+    this.props.authFailure("Authentication Failed :( Check your console for more info")
+  }
   render() {
     return (
       <MyMapComponent

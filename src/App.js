@@ -3,6 +3,7 @@ import './App.css';
 import Map from "./component/Map"
 import fourSquare from "./API/"
 import SideBar from "./component/SideBar"
+import Error from "./Error";
 class App extends Component {
   constructor() {
     super();
@@ -26,6 +27,7 @@ class App extends Component {
     })
   }
   /*Referred from coursework InfoWindow https://github.com/udacity/ud864/blob/master/Project_Code_3_WindowShoppingPart1.html*/
+  //Markers are handled along with the venues selected in ListView
   handleMarker = (marker) => {
     this.closeAllMarkers();
     marker.isOpen = true;
@@ -35,13 +37,23 @@ class App extends Component {
       .then(res => {
        const newVenue =  Object.assign(venue, res.response.venue);
        this.setState({venues: Object.assign(this.state.venues, newVenue)});
-        console.log(newVenue);
+  }).catch(err => {
+    this.setState(prevState => ({
+      errorDisplay: prevState.errorDisplay.length === 0 ? err.toString() : prevState.errorDisplay
+    }));
+    new Error(console.log(err));
   });
   }
-
+//Venue list is filtered here
   handleListItem = venue => {
     const marker = this.state.markers.find(marker => marker.id === venue.id);
     this.handleMarker(marker);
+  }
+  //authFailure is catched here if any
+  authFailure = (error) => {
+    this.setState({
+      errorDisplay: error
+    });
   }
   componentDidMount() {
     fourSquare.search({
@@ -65,9 +77,13 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <SideBar {...this.state} handleListItem={this.handleListItem}/>
-        <Map {...this.state} handleMarker={this.handleMarker}/>
+      <div className="App" role="application">
+          {console.log(this.state.errorDisplay)}
+          {this.state.errorDisplay && (
+            <Error errorDisplay={this.state.errorDisplay} />  //checks for error if any to show up in the console
+          )}
+          <SideBar {...this.state} handleListItem={this.handleListItem}/>
+          <Map role="main" {...this.state} authFailure = {this.authFailure} handleMarker={this.handleMarker}/>
       </div>
     );
   }
