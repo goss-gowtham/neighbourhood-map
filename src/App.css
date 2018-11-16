@@ -14,6 +14,7 @@ html, body, #root, .App {
   flex-direction: row;
   flex-wrap: nowrap;
 }
+/*Used 20% so that the site is responsive on all devices. Overflow added for Responsive on Screen Shrink.*/
 .App .sideBar {
   width: 20%;
   background: #000;

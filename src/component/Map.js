@@ -4,6 +4,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "reac
 /*
   Referred from React Library as suggested in classroomshttps://tomchentw.github.io/react-google-maps/#usage--configuration
 */
+//Marker and InfoWindow is rendered here
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={11}
@@ -30,7 +31,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   </GoogleMap>
 ))
 
-//Checks for Auth failure and then renders map
+//Checks for Auth failure and then renders map with Marker and InfoWindow
 export default class Map extends Component {
   componentDidMount() {
     window.gm_authFailure = this.gm_authFailure;

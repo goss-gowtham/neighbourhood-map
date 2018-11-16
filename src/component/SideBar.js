@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import VenueList from "./VenueList"
-
+//referred walkthrough of Forrest for SideBar stuffs: https://www.youtube.com/watch?v=lDVaZY0aG2w&t=0s&list=PL4rQq4MQP1crXuPtruu_eijgOUUXhcUCP&index=7 
 export default class SideBar extends Component {
     constructor() {
       super();
@@ -38,7 +38,7 @@ export default class SideBar extends Component {
     render() {
       return (
         <div className="sideBar">
-          <input type={"search"} id="search" placeholder="Search Places" onChange={this.handleChange}/>
+          <input type={"search"} tabIndex={0} id="search" placeholder="Search Places" onChange={this.handleChange}/>
           <VenueList {...this.props} venues={this.handleFilterVenues()} handleListItem={this.props.handleListItem} />
           <div style={{background:"white", marginTop: "10px"}}>
             <img width="200px" src="https://ss0.4sqi.net/img/poweredByFoursquare/poweredby-one-color-cdf070cc7ae72b3f482cf2d075a74c8c.png" alt="Powered by Foursquare"

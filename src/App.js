@@ -37,12 +37,7 @@ class App extends Component {
       .then(res => {
        const newVenue =  Object.assign(venue, res.response.venue);
        this.setState({venues: Object.assign(this.state.venues, newVenue)});
-  }).catch(err => {
-    this.setState(prevState => ({
-      errorDisplay: prevState.errorDisplay.length === 0 ? err.toString() : prevState.errorDisplay
-    }));
-    new Error(console.log(err));
-  });
+      })
   }
 //Venue list is filtered here
   handleListItem = venue => {
@@ -55,6 +50,7 @@ class App extends Component {
       errorDisplay: error
     });
   }
+  //Marker Positions are fetched Async from FourSquare abd catches error for Quota limit exceed and helps to display in the UI
   componentDidMount() {
     fourSquare.search({
       near: "Salem, IN",  //fetching my HomeTown!
@@ -73,6 +69,11 @@ class App extends Component {
         };
       });
       this.setState({ venues, center, markers });
+    }).catch(err => {
+      new Error(console.log(err));
+        this.setState(prevState => ({
+          errorDisplay: prevState.errorDisplay.length === 0 ? err.toString() : prevState.errorDisplay
+        }));
     });
   }
   render() {
